@@ -1,8 +1,8 @@
 import "./main.css";
-import { SingIn } from "./pages/Singin";
+import { SingUp } from "./pages/SingUp";
 
 function App() {
-  return <SingIn />;
+  return <SingUp />;
 }
 
 export default App;

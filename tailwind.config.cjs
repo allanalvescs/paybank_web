@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         "default-page": "linear-gradient(90deg, #256AFC 60%, #fff 40%)",
+        "default-inverse-page": "linear-gradient(270deg, #256AFC 60%, #fff 40%)",
       }
     },
   },
