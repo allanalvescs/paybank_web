@@ -7,7 +7,11 @@ module.exports = {
     '/index.html'
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "default-page": "linear-gradient(90deg, #256AFC 60%, #fff 40%)",
+      }
+    },
   },
   plugins: [],
 }
