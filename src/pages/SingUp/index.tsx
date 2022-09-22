@@ -1,6 +1,7 @@
 import { FormSingUp } from "./Form";
 
 import { FiChevronRight } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export function SingUp() {
   return (
@@ -10,9 +11,12 @@ export function SingUp() {
         className="absolute top-12 left-11 w-48"
       />
 
-      <a className="absolute top-12 right-24 text-white text-5xl hover:cursor-pointer">
+      <Link
+        to="/"
+        className="absolute top-12 right-24 text-white text-5xl hover:cursor-pointer"
+      >
         <FiChevronRight />
-      </a>
+      </Link>
 
       <FormSingUp />
 
