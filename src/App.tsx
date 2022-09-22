@@ -1,8 +1,8 @@
 import "./main.css";
-import { SingUp } from "./pages/SingUp";
+import { AppRoutes } from "./Routes/app.routes";
 
 function App() {
-  return <SingUp />;
+  return <AppRoutes />;
 }
 
 export default App;

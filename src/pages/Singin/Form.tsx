@@ -1,6 +1,7 @@
 import { Input } from "../../components/Form";
 
 import { FiAtSign, FiEye, FiEyeOff } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export function FormSingIn() {
   return (
@@ -15,9 +16,9 @@ export function FormSingIn() {
       <div className="w-80 mt-12">
         <p className="text-zinc-800 text-sm">
           Não possui uma conta?{" "}
-          <a href="" className="text-blue-400 decoration-solid">
+          <Link to="/register" className="text-blue-400 decoration-solid">
             Cadastre-se gratuitamente
-          </a>{" "}
+          </Link>{" "}
         </p>
       </div>
     </form>

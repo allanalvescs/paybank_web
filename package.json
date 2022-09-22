@@ -16,7 +16,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.36.0",
     "react-icons": "^4.4.0",
-    "react-router-dom": "^6.4.1",
+    "react-router-dom": "^5.3.3",
     "smart-webcomponents-react": "^14.2.92",
     "yup": "^0.32.11"
   },
