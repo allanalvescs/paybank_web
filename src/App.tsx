@@ -1,7 +1,8 @@
 import "./main.css";
+import { SingIn } from "./pages/Singin";
 
 function App() {
-  return <div className="flex items-center justify-center h-[100vh]"></div>;
+  return <SingIn />;
 }
 
 export default App;
