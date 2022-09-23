@@ -1,29 +1,75 @@
-import { useUser } from "../../Providers/User/Auth";
+import { Header } from "../../components/Header";
+import { FormLoan } from "./Form";
 
 export function Dashboard() {
-  const { singOut } = useUser();
-
   return (
     <div className="flex flex-col h-[100vh]">
-      <header className="w-[100%] h-24 flex justify-center items-center py-7 px-16 bg-slate-100">
-        <div className="w-[80%] m-auto flex items-center justify-between">
-          <div>
-            <img
-              src="https://www.controlle.com/assets/images/controlle.svg"
-              className="w-40"
-            />
-          </div>
+      <Header />
 
-          <div className="flex items-center justify-around ">
-            <button
-              className="w-24 h-10 rounded-md text-base text-white bg-blue-500 font-medium hover:bg-blue-600"
-              onClick={singOut}
-            >
-              Sair
-            </button>
+      <main className="flex flex-col items-center mt-16">
+        <h1 className="font-extralight text-zinc-700 text-4xl">
+          Simule e Solicite o seu empréstimo
+        </h1>
+
+        <div className="mt-8 flex flex-col items-center">
+          <h2 className="font-bold text-lg mb-6">
+            Preencha o formulário abaixo para simular
+          </h2>
+
+          <FormLoan />
+
+          <h2 className="font-bold text-lg mt-24">
+            Veja a simulação do empréstimo antes de efetivar
+          </h2>
+
+          <div className="mt-11 rounded border-2 border-zinc-300 w-[752px] ">
+            <div className="bg-blue-500 rounded-t-md py-6 px-16">
+              <div className="flex flex-wrap w-[552px] justify-between">
+                <div className="flex flex-col items-start justify-center mb-16">
+                  <label className="text-zinc-50 ">VALOR REQUERIDO</label>
+                  <span className="font-extrabold text-white">
+                    R$ 60.000,00
+                  </span>
+                </div>
+                <div className="flex flex-col items-start justify-center mb-16">
+                  <label className="text-zinc-50 ">VALOR REQUERIDO</label>
+                  <span className="font-extrabold text-white">
+                    R$ 60.000,00
+                  </span>
+                </div>
+                <div className="flex flex-col items-start justify-center mb-16">
+                  <label className="text-zinc-50 ">VALOR REQUERIDO</label>
+                  <span className="font-extrabold text-white">
+                    R$ 60.000,00
+                  </span>
+                </div>
+                <div className="flex flex-col items-start justify-center mb-6">
+                  <label className="text-zinc-50 ">VALOR REQUERIDO</label>
+                  <span className="font-extrabold text-white">
+                    R$ 60.000,00
+                  </span>
+                </div>
+                <div className="flex flex-col items-start justify-center mb-6">
+                  <label className="text-zinc-50 ">VALOR REQUERIDO</label>
+                  <span className="font-extrabold text-white">
+                    R$ 60.000,00
+                  </span>
+                </div>
+                <div className="flex flex-col items-start justify-center mb-6">
+                  <label className="text-zinc-50 ">VALOR REQUERIDO</label>
+                  <span className="font-extrabold text-white">
+                    R$ 60.000,00
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <h3 className="text-start mt-12 text-zinc-500 w-[100%] pl-16">
+              PROJEÇÃO DAS PARCELAS
+            </h3>
           </div>
         </div>
-      </header>
+      </main>
     </div>
   );
 }
