@@ -1,21 +1,31 @@
 import { ComponentType } from "react";
-import { Route as CommomRoute, RouterProps } from "react-router-dom";
+import {
+  Redirect,
+  Route as CommomRoute,
+  RouterProps as ReactRouterProps,
+} from "react-router-dom";
+import { useUser } from "../Providers/User/Auth";
 
-interface Props extends RouterProps {
+interface RouterProps extends ReactRouterProps {
   isPrivate?: Boolean;
   component: ComponentType;
 }
 
-export function Routes({
-  isPrivate = false,
+export function Route({
+  isPrivate,
   component: Component,
   ...rest
-}: Props) {
+}: RouterProps) {
+  const { token } = useUser();
   return (
     <CommomRoute
       {...rest}
       render={() => {
-        return <Component />;
+        return !!isPrivate === !!token ? (
+          <Component />
+        ) : (
+          <Redirect to={isPrivate ? "/" : "/dashboard"} />
+        );
       }}
     />
   );

@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import { api } from "../../Server/api";
 
 interface UserProviderProps {
@@ -24,12 +25,21 @@ interface UserContextData {
   token: string;
   loading: boolean;
   userSingIn(data: SingInCredentials): Promise<void>;
+  handleSingUp(data: SingUpCredencial): Promise<void>;
   singOut(): void;
 }
 
 export interface SingInCredentials {
   email: string;
   password: string;
+}
+
+export interface SingUpCredencial {
+  name: string;
+  email: string;
+  password: string;
+  cel: string;
+  accpept_terms: boolean;
 }
 
 const UserContext = createContext<UserContextData>({} as UserContextData);
@@ -68,6 +78,33 @@ function UserProvider({ children }: UserProviderProps) {
       setLoaging(false);
       history.push("/dashboard");
     } catch (error) {
+      setLoaging(false);
+      toast.error("Usuário e/ou senha incorreta!");
+      console.log(error);
+    }
+  };
+
+  const handleSingUp = async ({
+    name,
+    email,
+    password,
+    cel,
+  }: SingUpCredencial) => {
+    try {
+      setLoaging(true);
+      const response = await api.post("/users/singup", {
+        name,
+        email,
+        password,
+        cel,
+      });
+
+      setLoaging(false);
+      toast.success("Usuário criado com sucesso!");
+      history.push("/");
+    } catch (error) {
+      setLoaging(false);
+      toast.error("há um usuário já usando esse email!");
       console.log(error);
     }
   };
@@ -86,6 +123,7 @@ function UserProvider({ children }: UserProviderProps) {
         user: data.user,
         token: data.token,
         userSingIn,
+        handleSingUp,
         singOut,
         loading,
       }}
