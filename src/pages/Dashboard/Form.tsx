@@ -1,11 +1,46 @@
 import { Input } from "../../components/Form";
+import { LoanData, useLoan } from "../../Providers/Loan";
+
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useUser } from "../../Providers/User/Auth";
+
+const loanSchema = yup.object().shape({
+  uf: yup.string().required("Campo Obrigatório! *"),
+  data_born: yup.string().required("Campo Obrigatório! *"),
+  loan: yup.number().required("Campo Obrigatório! *"),
+  value_month: yup.string().required("Campo Obrigatório! *"),
+});
 
 export function FormLoan() {
+  const { handleLoanSimulation } = useLoan();
+  const { token } = useUser();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoanData>({
+    resolver: yupResolver(loanSchema),
+  });
+
+  const handleSubmitLoan = (data: LoanData) => {
+    const sendData = {
+      ...data,
+      loan: Number(data.loan),
+      value_month: Number(data.value_month),
+    };
+
+    handleLoanSimulation(sendData, token);
+  };
+
   return (
-    <form className="w-[752px] py-9 px-8 bg-white rounded-md border-2 border-zinc-200">
-      <Input name="cpf" placeholder="CPF" />
+    <form
+      onSubmit={handleSubmit(handleSubmitLoan)}
+      className="w-[752px] py-9 px-8 bg-white rounded-md border-2 border-zinc-200"
+    >
       <select
-        name="UF"
+        {...register("uf")}
         className="mb-6 w-[100%]  h-11 bg-white border-[1px] border-zinc-300 rounded px-4"
         placeholder="UF"
       >
@@ -15,9 +50,24 @@ export function FormLoan() {
         <option value="RJ">RJ</option>
         <option value="ES">ES</option>
       </select>
-      <Input name="data_born" placeholder="DATA DE NASCIMENTO" />
-      <Input name="loan" placeholder="QUAL O VALOR DO EMPRÉSTIMO" />
-      <Input name="value_month" placeholder="QUAL VALOR DESEJA PAGAR POR MÊS" />
+      <Input
+        {...register("data_born")}
+        error={errors.data_born}
+        placeholder="DATA DE NASCIMENTO"
+        type="date"
+      />
+      <Input
+        {...register("loan")}
+        error={errors.loan}
+        type="number"
+        placeholder="QUAL O VALOR DO EMPRÉSTIMO"
+      />
+      <Input
+        {...register("value_month")}
+        error={errors.value_month}
+        type="number"
+        placeholder="QUAL VALOR DESEJA PAGAR POR MÊS"
+      />
 
       <button
         type="submit"

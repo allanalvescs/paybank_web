@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SingInCredentials, useUser } from "../../Providers/User/Auth";
 import { Input } from "../../components/Form";
 
-import { FiAtSign, FiEye, FiEyeOff, FiLoader } from "react-icons/fi";
+import { FiAtSign, FiEye, FiEyeOff } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 import * as yup from "yup";

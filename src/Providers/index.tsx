@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { LoanProvider } from "./Loan";
 import { UserProvider } from "./User/Auth";
 
 interface Props {
@@ -6,5 +7,9 @@ interface Props {
 }
 
 export function Providers({ children }: Props) {
-  return <UserProvider>{children}</UserProvider>;
+  return (
+    <UserProvider>
+      <LoanProvider>{children}</LoanProvider>
+    </UserProvider>
+  );
 }
