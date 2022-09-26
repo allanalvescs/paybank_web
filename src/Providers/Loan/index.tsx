@@ -41,9 +41,22 @@ const useLoan = () => useContext(LoanContext);
 
 function LoanProvider({ children }: LoanProviderProps) {
   const [loans, setLoans] = useState<Loan[]>([]);
-  const [totalLoan, setTotalLoans] = useState<number>();
   const [rate, setRate] = useState(0);
-  const [data, setData] = useState<StatusLoan>({} as StatusLoan);
+  const [data, setData] = useState<StatusLoan>(() => {
+    const statusLoan = localStorage.getItem("@Controlle:Simulator");
+
+    if (statusLoan) {
+      return JSON.parse(statusLoan);
+    }
+
+    return {
+      dataLoans: [],
+      percentual: 0,
+      data_born: "",
+      loan: 0,
+      value_month: 0,
+    };
+  });
 
   const handleLoanSimulation = async (data: LoanData, token: string) => {
     try {
@@ -56,6 +69,11 @@ function LoanProvider({ children }: LoanProviderProps) {
       setData(response.data);
       setLoans(response.data.dataLoans);
       setRate(response.data.percentual);
+
+      localStorage.setItem(
+        "@Controlle:Simulator",
+        JSON.stringify(response.data)
+      );
     } catch (error) {
       console.log(error);
     }

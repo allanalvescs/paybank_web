@@ -9,8 +9,14 @@ import { useUser } from "../../Providers/User/Auth";
 const loanSchema = yup.object().shape({
   uf: yup.string().required("Campo Obrigatório! *"),
   data_born: yup.string().required("Campo Obrigatório! *"),
-  loan: yup.number().required("Campo Obrigatório! *"),
-  value_month: yup.string().required("Campo Obrigatório! *"),
+  loan: yup
+    .number()
+    .min(25000, "Empréstimo deve ser realizado com valor no minimo R$25.000,00")
+    .required("Campo Obrigatório! *"),
+  value_month: yup
+    .number()
+    .min(5000, "Valor a ser pago deve ser no minimo de R$5000,00")
+    .required("Campo Obrigatório! *"),
 });
 
 export function FormLoan() {

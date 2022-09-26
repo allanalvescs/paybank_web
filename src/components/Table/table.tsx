@@ -3,6 +3,7 @@ import { RowTable } from "./RowTable";
 
 export function Table() {
   const { loans } = useLoan();
+
   return (
     <table className="border-collapse w-[100%]">
       <thead>
